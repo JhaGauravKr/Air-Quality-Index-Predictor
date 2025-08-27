@@ -53,4 +53,11 @@ EDA was performed after cleaning to understand distributions, trends, and relati
 - Pollutants like **PM2.5** and **PM10** show strong correlation with AQI.
 
 ---
+## ⚠️ Dataset Information  
+The dataset used in this project is large and cannot be uploaded directly to GitHub.  
+👉 **Please download the dataset from Kaggle**:  
+[Air Quality Data in India (2015–2020)](https://www.kaggle.com/datasets/rohanrao/air-quality-data-in-india)  
 
+Once downloaded, place the CSV file in the project directory before running the notebook.  
+
+---
