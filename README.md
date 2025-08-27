@@ -1,14 +1,14 @@
 # Air Quality Prediction 
 
 
-## Week 1
-
 ## 📌 Project Overview
 This project focuses on analyzing air quality data across multiple Indian cities.  
 The dataset (`city_hour.csv`) contains hourly readings of pollutants and Air Quality Index (AQI) values.  
 The final objective of the project is to clean, explore, and later build predictive models for AQI.
 
 ---
+## Week 1
+
 
 ## ✅ Week 1 Goals
 The Week 1 work mainly covered **Data Loading, Cleaning, and Exploratory Data Analysis (EDA)**.
