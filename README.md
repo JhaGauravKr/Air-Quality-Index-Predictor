@@ -61,3 +61,105 @@ The dataset used in this project is large and cannot be uploaded directly to Git
 Once downloaded, place the CSV file in the project directory before running the notebook.  
 
 ---
+
+## Week 2
+
+## ✅ Week 2 Goals
+- Perform **feature engineering** to prepare dataset for machine learning.
+- Build **regression models** for predicting AQI numeric value.
+- Build **classification models** for predicting AQI category (Good, Moderate, Poor, etc.).
+- Apply **hyperparameter tuning** (optimized with smaller grids & fewer folds).
+- Add **visual evaluation tools** for model interpretation.
+- Save best models for deployment in Flask (Week 3).
+
+---
+
+## 🔹 Work Completed
+
+### 1. Feature Engineering
+- Extracted **time-based features**: Hour, Day, Month, Weekday.
+- Created **lag features** (previous AQI, PM2.5).
+- Generated **rolling averages (3h)** for pollutants.
+- Encoded **City column** using Label Encoding.
+- Dropped NaN rows introduced by lag/rolling operations.
+
+### 2. Dataset Sampling
+- Original dataset was very large (~1M+ rows).
+- Used **20% random sample (~200k rows)** for faster training and tuning.
+- Preserved data diversity across multiple cities and time periods.
+
+---
+
+## 🔹 Model Building
+
+### Regression Models (Predict AQI Value)
+| Model               | RMSE (↓ Better) |
+|----------------------|-----------------|
+| Linear Regression    | **14.90**       |
+| Random Forest        | **13.58**       |
+| XGBoost              | **13.93**       |
+
+✅ **Best model** → Random Forest Regressor (lowest error).
+
+📌 **Interpretation**: Predictions are typically within ±14 AQI units of the true value.
+
+---
+
+### Classification Models (Predict AQI Category)
+| Model               | Accuracy (↑ Better) |
+|----------------------|---------------------|
+| Logistic Regression  | **66.8%**           |
+| Random Forest        | **94.8%**           |
+| XGBoost              | **94.3%**           |
+
+✅ **Best model** → Random Forest Classifier (slightly better than XGBoost).
+
+📌 **Interpretation**: AQI categories were predicted correctly in ~95% of test cases.
+
+---
+
+## 🔹 Hyperparameter Tuning
+- Used **RandomizedSearchCV** instead of GridSearch for speed.
+- Tuned only on **sampled dataset (20%)**.
+- Limited parameter grids to 2–3 values each.
+- Used **fewer folds (cv=2)** for quicker evaluation.
+
+**Optimized Models:**
+- Random Forest Regressor (Regression) – Best Params selected.
+- XGBoost Classifier (Classification) – Best Params selected.
+
+---
+
+## 🔹 Visual Evaluation Tools
+
+### 1. Residual Plot – Regression
+- Showed error distribution around predicted AQI.
+- Confirmed that Random Forest predictions were centered with fewer extreme errors.
+
+### 2. Confusion Matrix – Classification
+- Demonstrated **how accurately each AQI category was predicted**.
+- Showed Random Forest & XGBoost both achieved ~95% accuracy.
+
+### 3. Feature Importance
+- Random Forest & XGBoost highlighted **PM2.5, PM10, NO2, SO2, CO, O3** as the most critical features.
+- Time features (Hour, Month, Weekday) also contributed.
+
+---
+
+## 🔹 Model Saving
+- **Saved models and encoders for Flask deployment**:
+  - `best_rf_regressor.pkl`
+  - `best_xgb_classifier.pkl`
+  - `city_encoder.pkl`
+  - `aqi_bucket_encoder.pkl`
+
+---
+
+## 📊 Results & Insights
+- **Regression**: AQI prediction within ±14 units → good precision for pollution forecasting.
+- **Classification**: AQI category prediction ~95% accuracy → highly reliable for issuing alerts.
+- Tree-based models (Random Forest, XGBoost) **outperformed linear models** by a wide margin.
+
+
+---
+
